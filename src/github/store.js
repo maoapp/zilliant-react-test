@@ -1,6 +1,6 @@
 import React, { Component, createContext } from 'react'
 
-import { getUser } from './requests'
+import { getUser, getRepos } from './requests'
 
 const GitHubContext = createContext()
 
@@ -45,10 +45,33 @@ export class GitHubStore extends Component {
       })
   }
 
+  updateRepos = () => {
+    this.setState({ isFetchingRepos: true })
+    getRepos
+      .then(res => {
+        this.setState({
+          repos: res.data,
+          isFetchingRepos: false,
+          lastSuccessfulReposFetch: new Date()
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        this.setState({
+          errorMsg: 'Could not fetch Repos :(',
+          isFetchingRepos: false
+        })
+      })
+  }
+
   render() {
     return (
       <GitHubContext.Provider
-        value={{ ...this.state, updateUser: this.updateUser }}
+        value={{
+          ...this.state,
+          updateUser: this.updateUser,
+          updateRepos: this.updateRepos
+        }}
       >
         {this.props.children}
       </GitHubContext.Provider>

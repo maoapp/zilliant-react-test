@@ -14,5 +14,10 @@ code {
 }
 
 .sidebar {
+  margin-top: 64px;
+}
+
+.main-container {
+  padding-left: 280px;
   margin-top: 65px
 }

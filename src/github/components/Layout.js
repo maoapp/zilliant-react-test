@@ -21,11 +21,13 @@ class Layout extends Component {
     const { isFetchingUser, children } = this.props
     return (
       isFetchingUser
-        ? <CircularProgress />
+        ? <CircularProgress id='main-progress' />
         : <div>
           <TopBar />
-          <Sidebar />
-          {children}
+          <div className='main-container'>
+            <Sidebar />
+            {children}
+          </div>
         </div>
     )
   }

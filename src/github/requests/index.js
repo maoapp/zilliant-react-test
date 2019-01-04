@@ -9,3 +9,5 @@ const requestConfig = {
 }
 
 export const getUser = axios.get(config.baseUrl + '/user', requestConfig)
+
+export const getRepos = axios.get(config.baseUrl + '/user/repos', requestConfig)
