@@ -28,7 +28,6 @@ export class GitHubStore extends Component {
 
   updateUser = () => {
     this.setState({ isFetchingUser: true })
-    console.log('Gonna fetch')
     getUser
       .then(res => {
         this.setState({

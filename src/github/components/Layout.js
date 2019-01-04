@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { CircularProgress } from 'react-md'
 
 import TopBar from './TopBar'
+import Sidebar from './Sidebar'
 import { connect } from '../store'
 
 class Layout extends Component {
@@ -16,11 +18,15 @@ class Layout extends Component {
   }
 
   render() {
-    const { isFetchingUser, user, updateUser } = this.props
+    const { isFetchingUser, children } = this.props
     return (
       isFetchingUser
-        ? <h1>Fetching!</h1>
-        : <TopBar user={user} updateUser={updateUser} />
+        ? <CircularProgress />
+        : <div>
+          <TopBar />
+          <Sidebar />
+          {children}
+        </div>
     )
   }
 }
