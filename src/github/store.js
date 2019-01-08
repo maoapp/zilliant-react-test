@@ -64,13 +64,30 @@ export class GitHubStore extends Component {
       })
   }
 
+  selectRepo = (id) => {
+    return () => {
+      const { repos } = this.state
+
+      const selectedRepo = repos.find(repo => {
+        return repo.id === id
+      })
+      if (selectedRepo) { this.setState({ selectedRepo }) }
+    }
+  }
+
+  unselectRepo = () => {
+    this.setState({ selectedRepo: null })
+  }
+
   render() {
     return (
       <GitHubContext.Provider
         value={{
           ...this.state,
           updateUser: this.updateUser,
-          updateRepos: this.updateRepos
+          updateRepos: this.updateRepos,
+          selectRepo: this.selectRepo,
+          unselectRepo: this.unselectRepo
         }}
       >
         {this.props.children}

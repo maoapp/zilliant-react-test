@@ -1,9 +1,9 @@
 import React from 'react'
 import { Avatar, Card, CardTitle, CardText, List, ListItem } from 'react-md'
 
-const RepoCard = ({ repo }) => {
+const RepoCard = ({ repo, selectRepo }) => {
   return (
-    <Card>
+    <Card onClick={selectRepo(repo.id)}>
       <CardTitle
         title={repo.name}
         subtitle={repo.full_name}

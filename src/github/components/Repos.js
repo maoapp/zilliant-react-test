@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
-import {
-  Grid,
-  Card,
-  CircularProgress,
-  Cell,
-  CardTitle
-} from 'react-md'
+import { CircularProgress } from 'react-md'
 
 import { connect } from '../store'
-import RepoCard from './RepoCard'
+import RepoList from './RepoList'
+import RepoDetail from './RepoDetail'
 
 class Repos extends Component {
   componentDidMount() {
@@ -23,22 +18,20 @@ class Repos extends Component {
   }
 
   render() {
-    const { isFetchingRepos, repos } = this.props
+    const {
+      isFetchingRepos,
+      repos,
+      selectedRepo,
+      selectRepo,
+      unselectRepo
+    } = this.props
     console.log(repos)
     return (
       isFetchingRepos
         ? <CircularProgress id='repos-progress' />
-        : <Grid>
-          {
-            repos.map((repo, idx) => {
-              return (
-                <Cell key={idx} size={6}>
-                  <RepoCard repo={repo} />
-                </Cell>
-              )
-            })
-          }
-        </Grid>
+        : selectedRepo
+          ? <RepoDetail repo={selectedRepo} unselectRepo={unselectRepo} />
+          : <RepoList repos={repos} selectRepo={selectRepo} />
     )
   }
 }
