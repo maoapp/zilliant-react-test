@@ -64,6 +64,10 @@ export class GitHubStore extends Component {
       })
   }
 
+  dismissError = () => {
+    this.setState({ errorMsg: null })
+  }
+
   selectRepo = (id) => {
     return () => {
       const { repos } = this.state
@@ -87,7 +91,8 @@ export class GitHubStore extends Component {
           updateUser: this.updateUser,
           updateRepos: this.updateRepos,
           selectRepo: this.selectRepo,
-          unselectRepo: this.unselectRepo
+          unselectRepo: this.unselectRepo,
+          dismissError: this.dismissError
         }}
       >
         {this.props.children}

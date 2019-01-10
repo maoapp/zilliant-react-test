@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { CircularProgress } from 'react-md'
+import { CircularProgress, Snackbar } from 'react-md'
 
 import TopBar from './TopBar'
 import Sidebar from './Sidebar'
@@ -18,17 +18,27 @@ class Layout extends Component {
   }
 
   render() {
-    const { isFetchingUser, children } = this.props
+    const { isFetchingUser, children, errorMsg, dismissError } = this.props
+    const toasts = errorMsg ? [{ text: errorMsg }] :[]
     return (
-      isFetchingUser
-        ? <CircularProgress id='main-progress' />
-        : <div>
-          <TopBar />
-          <div className='main-container'>
-            <Sidebar />
-            {children}
-          </div>
-        </div>
+      <div>
+        {
+          isFetchingUser
+            ? <CircularProgress id='main-progress' />
+            : <div>
+              <TopBar />
+              <div className='main-container'>
+                <Sidebar />
+                {children}
+              </div>
+            </div>
+        }
+        <Snackbar
+          id='error-snackbar'
+          toasts={toasts}
+          onDismiss={dismissError}
+        />
+      </div>
     )
   }
 }
