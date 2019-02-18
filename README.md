@@ -1,6 +1,17 @@
-# Context Playground
+# React/Redux Test
 
-This is just a playground repo for me to test out the new context API.
+This repo serves as a basis for a small test to show off React/Redux skills.
+
+# What you should do
+
+1. Fork this repo to your own GitHub account, clone it locally to your machine.
+1. Install dependencies with `npm i` and start the development server with `npm start`
+1. The basic task that you should accomplish is to replace the current store (Created with the Context API) with a redux store, without breaking the current functionality.
+1. This is a guided test, so please feel free to ask any questions you want, we will ask our own questions along the way :).
+
+__Bonus:__ Test stuff!
+
+__NOTE:__ It is important that you try and use best practices and cool React/Redux concepts along the way.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
