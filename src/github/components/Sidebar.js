@@ -1,11 +1,7 @@
 import React from 'react'
 import { Drawer, List, ListItem, Avatar, FontIcon } from 'react-md'
 
-import { connect } from '../store'
-
-const Sidebar = ({ user }) => {
-  console.log(user)
-  return (
+const Sidebar = ({ user }) => (
     user
     ? <Drawer
       className='sidebar'
@@ -39,6 +35,5 @@ const Sidebar = ({ user }) => {
     </Drawer>
     : null
   )
-}
 
-export default connect(Sidebar)
+export default Sidebar;

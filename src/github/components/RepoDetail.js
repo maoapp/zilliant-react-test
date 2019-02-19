@@ -9,7 +9,6 @@ import {
 } from 'react-md'
 
 const RepoDetail = ({ repo, unselectRepo }) => {
-  console.log(repo)
   let children = []
   for (let key in repo) {
     if (typeof repo[key] !== 'object') {

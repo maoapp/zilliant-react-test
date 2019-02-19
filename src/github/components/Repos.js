@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import { CircularProgress } from 'react-md'
+import PropTypes from 'prop-types';
 
-import { connect } from '../store'
 import RepoList from './RepoList'
 import RepoDetail from './RepoDetail'
 
 class Repos extends Component {
   componentDidMount() {
-    const { updateRepos, lastSuccessfulReposFetch } = this.props
+    const { fetchRepos, lastSuccessfulReposFetch } = this.props
 
     const now = new Date()
     if (!lastSuccessfulReposFetch) {
-      updateRepos()
+      fetchRepos()
     } else if ((now - lastSuccessfulReposFetch) / 1000 > 300) {
-      updateRepos()
+      fetchRepos()
     }
-  }
+}
 
   render() {
     const {
@@ -25,15 +25,22 @@ class Repos extends Component {
       selectRepo,
       unselectRepo
     } = this.props
-    console.log(repos)
     return (
       isFetchingRepos
         ? <CircularProgress id='repos-progress' />
         : selectedRepo
           ? <RepoDetail repo={selectedRepo} unselectRepo={unselectRepo} />
-          : <RepoList repos={repos} selectRepo={selectRepo} />
+          : repos.length > 0 && <RepoList repos={repos} selectRepo={selectRepo} />
     )
   }
 }
 
-export default connect(Repos)
+Repos.propTypes = {
+  repos: PropTypes.arrayOf(PropTypes.shape()),
+  isFetchingRepos: PropTypes.bool.isRequired,
+  lastSuccessfulReposFetch: PropTypes.shape(),
+  selectRepo: PropTypes.func,
+  unselectRepo: PropTypes.func
+}
+
+export default Repos;

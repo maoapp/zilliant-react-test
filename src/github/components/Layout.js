@@ -1,34 +1,34 @@
-import React, { Component } from 'react'
-import { CircularProgress, Snackbar } from 'react-md'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { CircularProgress, Snackbar } from 'react-md';
 
 import TopBar from './TopBar'
 import Sidebar from './Sidebar'
-import { connect } from '../store'
 
 class Layout extends Component {
-
   componentDidMount() {
-    const { updateUser, lastSuccessfulUserFetch } = this.props
+    const { fetchUser, lastSuccessfulUserFetch } = this.props
     const now = new Date()
     if (!lastSuccessfulUserFetch) {
-      updateUser()
+      fetchUser()
     } else if ((now - lastSuccessfulUserFetch) / 1000 > 300) {
-      updateUser()
+      fetchUser()
     }
   }
 
   render() {
-    const { isFetchingUser, children, errorMsg, dismissError } = this.props
+    const { isFetchingUser, children, errorMsg, dismissError, user, fetchUser, fetchRepos } = this.props
     const toasts = errorMsg ? [{ text: errorMsg }] :[]
+
     return (
       <div>
         {
           isFetchingUser
             ? <CircularProgress id='main-progress' />
             : <div>
-              <TopBar />
+              <TopBar {...{user, updateUser: fetchUser, updateRepos: fetchRepos}}/>
               <div className='main-container'>
-                <Sidebar />
+                <Sidebar {...{user}}/>
                 {children}
               </div>
             </div>
@@ -43,5 +43,12 @@ class Layout extends Component {
   }
 }
 
+Layout.propTypes = {
+  user: PropTypes.shape(),
+  isFetchingUser: PropTypes.bool.isRequired,
+  lastSuccessfulUserFetch: PropTypes.shape(),
+  fetchUser: PropTypes.func,
+  dismissError: PropTypes.func
+}
 
-export default connect(Layout)
+export default Layout;

@@ -3,8 +3,7 @@ import { Grid, Cell } from 'react-md'
 
 import RepoCard from './RepoCard'
 
-const RepoList = ({ repos, selectRepo }) => {
-  return (
+const RepoList = ({ repos, selectRepo }) => (
     <Grid>
       {
         repos.map((repo, idx) => {
@@ -17,6 +16,5 @@ const RepoList = ({ repos, selectRepo }) => {
       }
     </Grid>
   )
-}
 
 export default RepoList
