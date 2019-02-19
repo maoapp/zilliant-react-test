@@ -1,6 +1,7 @@
 # React/Redux Test
-
+This test includes
 - Added redux
+- redux selectors
 - Added unit tests for components, actions, reducers and containers
 
 # What you should do

@@ -6,13 +6,16 @@ import { connect } from 'react-redux';
 import  * as Actions from '../actions/repos';
 
 const getReposReducerState = (state, property) => state[property];
+const findRepoSelected = (repos, id) => {
+  return repos.find(repo => repo.id === id)
+}
 
 function mapStateToProps({reposReducer}) {
   return {
     repos: getReposReducerState(reposReducer, 'repos'),
     isFetchingRepos: getReposReducerState(reposReducer, 'isFetchingRepos'),
     lastSuccessfulReposFetch: getReposReducerState(reposReducer, 'lastSuccessfulReposFetch'),
-    selectedRepo: getReposReducerState(reposReducer, 'selectedRepo')
+    selectedRepo: findRepoSelected(reposReducer.repos, reposReducer.selectedRepo)
   }
 }
 

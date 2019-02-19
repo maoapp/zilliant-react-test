@@ -25,7 +25,7 @@ const reposReducer = (state = INITIAL_STATE, action) => {
     case FETCH_REPOS_FAILURE: 
       return {...state, isFetchingRepos: false, errorMsg: ERROR_FETCHING_REPOS}  
     case SELECTED_REPO:
-      return {...state, selectedRepo: state.repos.find(repo => repo.id === action.payload)}   
+      return {...state, selectedRepo: action.payload}   
     case UNSELECTED_REPO:
       return {...state, selectedRepo: null}    
     default:
