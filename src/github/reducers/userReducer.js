@@ -17,9 +17,9 @@ const INITIAL_STATE = {
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_USER_REQUEST:
-      return {...state, isFetchingRepos: true}
+      return {...state, isFetchingUser: true}
     case FETCH_USER_SUCCESSFUL:
-      return {...state, user: action.payload, isFetchingUser: false}
+      return {...state, user: action.payload, isFetchingUser: false, lastSuccessfulUserFetch: new Date()}
     case FETCH_USER_FAILURE: 
       return {...state, isFetchingUser: false, errorMsg: ERROR_FETCHING_USER} 
     case RESET_ERROR_MESSAGE:

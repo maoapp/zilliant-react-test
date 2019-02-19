@@ -30,7 +30,7 @@ class Repos extends Component {
         ? <CircularProgress id='repos-progress' />
         : selectedRepo
           ? <RepoDetail repo={selectedRepo} unselectRepo={unselectRepo} />
-          : repos.length > 0 && <RepoList repos={repos} selectRepo={selectRepo} />
+          : <RepoList repos={repos} selectRepo={selectRepo} />
     )
   }
 }
@@ -40,6 +40,7 @@ Repos.propTypes = {
   isFetchingRepos: PropTypes.bool.isRequired,
   lastSuccessfulReposFetch: PropTypes.shape(),
   selectRepo: PropTypes.func,
+  selectedRepo: PropTypes.shape(),
   unselectRepo: PropTypes.func
 }
 

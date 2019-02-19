@@ -9,6 +9,7 @@ class Layout extends Component {
   componentDidMount() {
     const { fetchUser, lastSuccessfulUserFetch } = this.props
     const now = new Date()
+    
     if (!lastSuccessfulUserFetch) {
       fetchUser()
     } else if ((now - lastSuccessfulUserFetch) / 1000 > 300) {
