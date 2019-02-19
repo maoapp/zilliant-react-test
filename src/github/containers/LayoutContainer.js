@@ -5,12 +5,14 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/user';
 import * as repoActions from '../actions/repos';
 
+const getUserReducerState = (state, property) => state[property];
+
 function mapStateToProps({userReducer}) {
   return {
-    user: userReducer.user,
-    isFetchingUser: userReducer.isFetchingUser,
-    lastSuccessfulUserFetch: userReducer.lastSuccessfulUserFetch,
-    errorMsg: userReducer.errorMsg
+    user: getUserReducerState(userReducer, 'user'),
+    isFetchingUser: getUserReducerState(userReducer, 'isFetchingUser'),
+    lastSuccessfulUserFetch: getUserReducerState(userReducer, 'lastSuccessfulUserFetch'),
+    errorMsg: getUserReducerState(userReducer, 'errorMsg')
   }
 }
 

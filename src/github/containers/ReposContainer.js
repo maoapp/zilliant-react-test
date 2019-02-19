@@ -5,12 +5,14 @@ import { connect } from 'react-redux';
 
 import  * as Actions from '../actions/repos';
 
+const getReposReducerState = (state, property) => state[property];
+
 function mapStateToProps({reposReducer}) {
   return {
-    repos: reposReducer.repos,
-    isFetchingRepos: reposReducer.isFetchingRepos,
-    lastSuccessfulReposFetch: reposReducer.lastSuccessfulReposFetch,
-    selectedRepo: reposReducer.selectedRepo
+    repos: getReposReducerState(reposReducer, 'repos'),
+    isFetchingRepos: getReposReducerState(reposReducer, 'isFetchingRepos'),
+    lastSuccessfulReposFetch: getReposReducerState(reposReducer, 'lastSuccessfulReposFetch'),
+    selectedRepo: getReposReducerState(reposReducer, 'selectedRepo')
   }
 }
 
