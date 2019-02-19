@@ -1,5 +1,5 @@
 
-import Repos from '../components/Repos';
+import Repos from '../components/repo/Repos';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

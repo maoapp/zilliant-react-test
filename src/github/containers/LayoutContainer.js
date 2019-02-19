@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import Layout from '../components/layout/Layout';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 

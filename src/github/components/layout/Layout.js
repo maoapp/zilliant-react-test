@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress, Snackbar } from 'react-md';
 
-import TopBar from './TopBar'
-import Sidebar from './Sidebar'
+import TopBar from '../topBar/TopBar';
+import Sidebar from '../sideBar/Sidebar';
 
 class Layout extends Component {
   componentDidMount() {
