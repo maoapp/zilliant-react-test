@@ -1,6 +1,7 @@
 # React/Redux Test
 
-This repo serves as a basis for a small test to show off React/Redux skills.
+- Added redux
+- Added unit tests for components, actions, reducers and containers
 
 # What you should do
 
